@@ -8,29 +8,27 @@
 <body>
     <h1>Cargar Producto</h1>
 
-    <!-- Formulario para agregar o editar productos -->
-    <form th:action="@{/guardar}" th:object="${persona}" method="post">
+    <form th:action="@{/guardar}" th:object="${producto}" method="post">
         <input type="hidden" th:field="*{id}" />
         
         <label for="nombre">Nombre:</label>
         <input type="text" th:field="*{nombre}" required /><br>
 
-        <label for="telefono">Teléfono:</label>
-        <input type="text" th:field="*{telefono}" required /><br>
+        <label for="tipo">Tipo:</label>
+        <input type="text" th:field="*{tipo}" required /><br>
 
-        <label for="correoElectronico">Correo Electrónico:</label>
-        <input type="email" th:field="*{correoElectronico}" required /><br>
+        <label for="estado">Estado:</label>
+        <input type="text" th:field="*{estado}" required /><br>
 
-        <label for="comuna">Comuna:</label>
-        <input type="text" th:field="*{comuna}" required /><br>
+        <label for="vendedor">Vendedor:</label>
+        <input type="text" th:field="*{vendedor}" required /><br>
 
-        <label for="direccion">Dirección:</label>
-        <input type="text" th:field="*{direccion}" required /><br>
+        <label for="precio">Precio:</label>
+        <input type="text" th:field="*{precio}" required /><br>
 
         <button type="submit">Guardar</button>
     </form>
 
-    <a th:href="@{/ver-productos}">Volver a la lista de productos</a> <!-- Botón para regresar a la lista de productos -->
+    <a th:href="@{/ver-productos}">Volver a la lista de productos</a>
 </body>
 </html>
-

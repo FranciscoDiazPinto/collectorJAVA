@@ -7,38 +7,34 @@
 </head>
 <body>
     <h1>Productos Publicados</h1>
-
     <h2>Lista de Productos</h2>
     <table border="1">
         <thead>
             <tr>
-                <th>ID</th>
-                <th>Nombre</th>
-                <th>Teléfono</th>
-                <th>Correo Electrónico</th>
-                <th>Comuna</th>
-                <th>Dirección</th>
+                <th>Nombre del Artículo</th>
+                <th>Tipo</th>
+                <th>Estado</th>
+                <th>Vendedor</th>
+                <th>Precio</th>
                 <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            <tr th:each="persona : ${personas}">
-                <td th:text="${persona.id}"></td>
-                <td th:text="${persona.nombre}"></td>
-                <td th:text="${persona.telefono}"></td>
-                <td th:text="${persona.correoElectronico}"></td>
-                <td th:text="${persona.comuna}"></td>
-                <td th:text="${persona.direccion}"></td>
+            <tr th:each="producto : ${productos}">
+                <td th:text="${producto.nombre}"></td>
+                <td th:text="${producto.tipo}"></td>
+                <td th:text="${producto.estado}"></td>
+                <td th:text="${producto.vendedor}"></td>
+                <td th:text="${producto.precio}"></td>
                 <td>
-                    <a th:href="@{/editar/{id}(id=${persona.id})}">Editar</a>
-                    <a th:href="@{/delete/{id}(id=${persona.id})}" 
-                       onclick="return confirm('¿Estás seguro de eliminar esta persona?');">Eliminar</a>
+                    <a th:href="@{/editar/{id}(id=${producto.id})}">Editar</a>
+                    <a th:href="@{/delete/{id}(id=${producto.id})}" 
+                       onclick="return confirm('¿Estás seguro de eliminar este producto?');">Eliminar</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <a th:href="@{/cargar-producto}">Cargar un nuevo producto</a> <!-- Botón para redirigir a la página de carga -->
+    <a th:href="@{/cargar-producto}">Cargar un nuevo producto</a>
 </body>
 </html>
-
