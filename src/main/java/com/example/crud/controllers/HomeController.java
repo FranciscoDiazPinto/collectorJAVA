@@ -33,11 +33,19 @@ public class HomeController {
         return "cargar-producto";
     }
 
-    @PostMapping("/guardar")
-    public String guardar(@ModelAttribute Producto producto) {
+@PostMapping("/guardar")
+public String guardar(@ModelAttribute Producto producto) {
+    System.out.println("Producto a guardar: " + producto);
+    try {
         productoService.saveProducto(producto);
-        return "redirect:/ver-productos";
+        System.out.println("Producto guardado correctamente.");
+    } catch (Exception e) {
+        System.out.println("Error al guardar el producto: " + e.getMessage());
+        e.printStackTrace(); // Esto imprimirá el stack trace de la excepción
     }
+    return "redirect:/ver-productos";
+}
+
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
