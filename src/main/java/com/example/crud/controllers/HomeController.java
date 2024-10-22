@@ -17,8 +17,9 @@ public class HomeController {
     
     @GetMapping("/")
     public String index() {
-        return "index";  // Ahora retorna la vista "index.html"
+        return "redirect:/home";  // Redirige a la vista "home.html"
     }
+
 
     @GetMapping("/home")
     public String home(Model model) {
