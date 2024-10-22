@@ -15,38 +15,46 @@ public class HomeController {
     @Autowired
     private PersonaService personaService;
     
+    // Página principal redirige a la lista de productos publicados
     @GetMapping("/")
     public String index() {
-        return "redirect:/home";  // Redirige a la vista "home.html"
+        return "redirect:/ver-productos";  // Redirige a la vista "ver-productos.html"
     }
 
-
-    @GetMapping("/home")
-    public String home(Model model) {
+    // Vista para mostrar las personas (productos) publicadas
+    @GetMapping("/ver-productos")
+    public String listarPublicados(Model model) {
         List<Persona> personas = personaService.getAllPersonas();
         model.addAttribute("personas", personas);  // Pasa la lista de personas a la vista
-        model.addAttribute("persona", new Persona());  // Objeto vacío para el formulario de creación
-        return "home";  // Retorna la vista "home.html"
+        return "ver-productos";  // Retorna la vista "ver-productos.html"
     }
 
+    // Vista para cargar o editar personas (productos)
+    @GetMapping("/cargar-producto")
+    public String cargarPersona(Model model) {
+        model.addAttribute("persona", new Persona());  // Objeto vacío para el formulario de creación
+        return "cargar-producto";  // Retorna la vista "cargar-producto.html"
+    }
+
+    // Guardar nueva persona (producto) o editar existente
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Persona persona) {
         personaService.savePersona(persona);
-        return "redirect:/";  // Redirige a la página principal después de guardar
+        return "redirect:/ver-productos";  // Redirige a la página de productos publicados
     }
 
+    // Cargar persona (producto) existente para edición
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
         Persona persona = personaService.getPersonaById(id).orElse(null);
-        model.addAttribute("persona", persona);
-        List<Persona> personas = personaService.getAllPersonas();
-        model.addAttribute("personas", personas);  // Actualiza la lista de personas
-        return "home";  // Cargar la misma página para editar
+        model.addAttribute("persona", persona);  // Objeto persona cargado para edición
+        return "cargar-producto";  // Muestra el formulario en "cargar-producto.html"
     }
 
+    // Eliminar persona (producto)
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id) {
         personaService.deletePersona(id);
-        return "redirect:/";  // Redirige a la página principal después de eliminar
+        return "redirect:/ver-productos";  // Redirige a la página de productos publicados después de eliminar
     }
 }
