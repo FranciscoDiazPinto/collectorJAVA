@@ -3,19 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Productos Publicados</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #444; /* Fondo gris oscuro */
+            color: white; /* Texto blanco */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: white; /* Fondo blanco para el header */
+            display: flex;
+            justify-content: flex-start;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            height: 60px; /* Altura fija para el header */
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+
+        table {
+            border-collapse: collapse; /* Quitar el espacio entre bordes */
+            width: 80%; /* Ajustar el ancho de la tabla */
+            margin: 20px 0; /* Espacio alrededor de la tabla */
+        }
+
+        th, td {
+            border: 1px solid white; /* Borde blanco */
+            padding: 8px; /* Espacio interno en celdas */
+            text-align: left;
+        }
+
+        th {
+            background-color: #444; /* Fondo gris más oscuro */
+            color: white; /* Texto blanco en el encabezado */
+        }
+
+        .button-container {
+            margin: 20px; /* Espacio alrededor del botón */
+            text-align: center; /* Centrar el botón */
+        }
+
+        button {
+            background-color: black; /* Color de fondo negro */
+            color: white; /* Color del texto blanco */
+            border: 2px solid white; /* Borde blanco */
+            padding: 10px 15px; /* Espacio interno en el botón */
+            border-radius: 4px; /* Bordes redondeados */
+            cursor: pointer;
+            font-size: 16px; /* Tamaño de fuente */
+        }
+
+        button:hover {
+            background-color: #555; /* Un gris claro al pasar el ratón */
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <a th:href="@{/}">
-            <img src="/images/logo.jpeg" alt="Logo">
+            <img src="/images/logo.jpeg" alt="Logo" style="height: 50px;">
         </a>
     </header>
 
     <h1>Productos Publicados</h1>
     <h2>Lista de Productos</h2>
-    <table border="1">
+    <table>
         <thead>
             <tr>
                 <th>Nombre del Artículo</th>
@@ -34,14 +94,18 @@
                 <td th:text="${producto.vendedor}"></td>
                 <td th:text="${producto.precio}"></td>
                 <td>
-                    <a th:href="@{/editar/{id}(id=${producto.id})}">Editar</a>
+                    <a th:href="@{/editar/{id}(id=${producto.id})}" style="color: white;">Editar</a>
                     <a th:href="@{/delete/{id}(id=${producto.id})}" 
+                       style="color: white;" 
                        onclick="return confirm('¿Estás seguro de eliminar este producto?');">Eliminar</a>
                 </td>
             </tr>
         </tbody>
     </table>
 
-    <button><a th:href="@{/cargar-producto}">Cargar un nuevo producto</a></button>
+    <div class="button-container">
+        <button><a th:href="@{/cargar-producto}" style="color: white; text-decoration: none;">Cargar un nuevo producto</a></button>
+    </div>
+
 </body>
 </html>

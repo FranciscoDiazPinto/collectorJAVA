@@ -3,13 +3,81 @@
 <head>
     <meta charset="UTF-8">
     <title>Cargar Producto</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #444; /* Fondo gris oscuro */
+            color: white; /* Texto blanco */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: white; /* Fondo blanco para el header */
+            display: flex;
+            justify-content: flex-start;
+            padding: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            height: 60px; /* Altura fija para el header */
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        form {
+            border: 2px solid white; /* Borde blanco */
+            padding: 20px; /* Espacio interno */
+            border-radius: 5px; /* Bordes redondeados */
+            background-color: #444; /* Fondo gris oscuro para el formulario */
+            width: 400px; /* Ajustar el ancho del formulario */
+            margin: 20px 0; /* Espacio alrededor del formulario */
+        }
+
+        label {
+            display: block; /* Mostrar etiquetas en bloques */
+            margin: 10px 0 5px; /* Espacio alrededor de etiquetas */
+        }
+
+        input {
+            width: calc(100% - 22px); /* Ancho completo menos espacio del borde */
+            padding: 10px; /* Espacio interno en campos de entrada */
+            border: 1px solid #ccc; /* Borde gris claro */
+            border-radius: 4px; /* Bordes redondeados */
+        }
+
+        .button-container {
+            text-align: center; /* Centrar los botones */
+            margin-top: 20px; /* Espacio superior para los botones */
+        }
+
+        button {
+            background-color: black; /* Color de fondo negro */
+            color: white; /* Color del texto blanco */
+            border: 2px solid white; /* Borde blanco */
+            padding: 10px 15px; /* Espacio interno en el botón */
+            border-radius: 4px; /* Bordes redondeados */
+            cursor: pointer;
+            font-size: 16px; /* Tamaño de fuente */
+        }
+
+        button:hover {
+            background-color: #555; /* Un gris claro al pasar el ratón */
+        }
+
+        .back-button {
+            margin-top: 10px; /* Espacio encima del botón de volver */
+        }
+    </style>
 </head>
 <body>
 
     <header>
         <a th:href="@{/}">
-            <img src="/images/logo.jpeg" alt="Logo">
+            <img src="/images/logo.jpeg" alt="Logo" style="height: 50px;">
         </a>
     </header>
     
@@ -19,22 +87,27 @@
         <input type="hidden" th:field="*{id}" />
         
         <label for="nombre">Nombre:</label>
-        <input type="text" th:field="*{nombre}" required /><br>
+        <input type="text" th:field="*{nombre}" required />
 
         <label for="tipo">Tipo:</label>
-        <input type="text" th:field="*{tipo}" required /><br>
+        <input type="text" th:field="*{tipo}" required />
 
         <label for="estado">Estado:</label>
-        <input type="text" th:field="*{estado}" required /><br>
+        <input type="text" th:field="*{estado}" required />
 
         <label for="vendedor">Vendedor:</label>
-        <input type="text" th:field="*{vendedor}" required /><br>
+        <input type="text" th:field="*{vendedor}" required />
 
         <label for="precio">Precio:</label>
-        <input type="text" th:field="*{precio}" required /><br>
+        <input type="text" th:field="*{precio}" required />
+        <br>
 
         <button type="submit">Guardar</button>
     </form>
-    <button><a th:href="@{/ver-productos}">Volver a la lista de productos</a></button>
+    
+    <div class="back-button">
+        <button><a th:href="@{/ver-productos}" style="color: white; text-decoration: none;">Volver a la lista de productos</a></button>
+    </div>
+
 </body>
 </html>
