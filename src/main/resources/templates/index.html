@@ -4,24 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Página con Botones</title>
-    <link rel="stylesheet" th:href="@{/css/styles.css}">
-
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
 
     <header>
-        <a th:href="@{/}">
+        <a href="/">
             <img src="/images/logo.jpeg" alt="Logo">
         </a>
     </header>
 
-<div class="container">
-    <h1>Botones de Acción</h1>
-    <button onclick="alert('Acción 1')">Botón 1</button>
-    <button onclick="alert('Acción 2')">Botón 2</button>
-    <button onclick="alert('Acción 3')">Botón 3</button>
-    <button onclick="alert('Acción 4')">Botón 4</button>
-</div>
+    <div class="container">
+        <h1>Botones de Acción</h1>
+        <button onclick="window.location.href='/ver-productos'">Ver Productos</button>
+        <button onclick="window.location.href='/cargar-producto'">Cargar Producto</button>
+        <button onclick="alert('Acción 3')">Botón 3</button>
+        <button onclick="alert('Acción 4')">Botón 4</button>
+    </div>
 
 </body>
 </html>

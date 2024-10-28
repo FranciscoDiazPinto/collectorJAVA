@@ -8,13 +8,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://localhost:3000") // Cambia si tu frontend está en otro puerto
 @Controller
-
-
-
 public class HomeController {
 
     @Autowired
@@ -22,13 +17,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String index() {
-        return "redirect:/ver-productos";
+        return "index"; // Redirigir a la plantilla index
     }
 
     @GetMapping("/ver-productos")
-    @ResponseBody
-    public List<Producto> listarPublicados() {
-        return productoService.getAllProductos();
+    public String listarPublicados(Model model) {
+        List<Producto> productos = productoService.getAllProductos();
+        model.addAttribute("productos", productos);
+        return "ver-productos"; // Asegúrate de tener una plantilla para esta vista
     }
 
     @GetMapping("/cargar-producto")
@@ -37,26 +33,17 @@ public class HomeController {
         return "cargar-producto";
     }
 
-<<<<<<< HEAD
     @PostMapping("/guardar")
     public String guardar(@ModelAttribute Producto producto) {
-        productoService.saveProducto(producto);
+        try {
+            productoService.saveProducto(producto);
+            System.out.println("Producto guardado correctamente.");
+        } catch (Exception e) {
+            System.out.println("Error al guardar el producto: " + e.getMessage());
+            e.printStackTrace(); // Imprimir el stack trace de la excepción
+        }
         return "redirect:/ver-productos";
-=======
-@PostMapping("/guardar")
-public String guardar(@ModelAttribute Producto producto) {
-    System.out.println("Producto a guardar: " + producto);
-    try {
-        productoService.saveProducto(producto);
-        System.out.println("Producto guardado correctamente.");
-    } catch (Exception e) {
-        System.out.println("Error al guardar el producto: " + e.getMessage());
-        e.printStackTrace(); // Esto imprimirá el stack trace de la excepción
->>>>>>> parent of be23537 (Modificacion Index)
     }
-    return "redirect:/ver-productos";
-}
-
 
     @GetMapping("/editar/{id}")
     public String editar(@PathVariable Long id, Model model) {
