@@ -8,8 +8,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
 
+@CrossOrigin(origins = "http://localhost:3000") // Cambia si tu frontend está en otro puerto
 @Controller
+
+
+
 public class HomeController {
 
     @Autowired
@@ -21,10 +26,9 @@ public class HomeController {
     }
 
     @GetMapping("/ver-productos")
-    public String listarPublicados(Model model) {
-        List<Producto> productos = productoService.getAllProductos();
-        model.addAttribute("productos", productos);
-        return "ver-productos";
+    @ResponseBody
+    public List<Producto> listarPublicados() {
+        return productoService.getAllProductos();
     }
 
     @GetMapping("/cargar-producto")
