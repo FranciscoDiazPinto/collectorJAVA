@@ -6,6 +6,13 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+
+    <header>
+        <a th:href="@{/}">
+            <img src="/images/logo.jpeg" alt="Logo">
+        </a>
+    </header>
+
     <h1>Productos Publicados</h1>
     <h2>Lista de Productos</h2>
     <table border="1">
@@ -35,6 +42,6 @@
         </tbody>
     </table>
 
-    <a th:href="@{/cargar-producto}">Cargar un nuevo producto</a>
+    <button><a th:href="@{/cargar-producto}">Cargar un nuevo producto</a></button>
 </body>
 </html>

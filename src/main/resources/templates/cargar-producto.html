@@ -6,6 +6,13 @@
     <link rel="stylesheet" th:href="@{/css/styles.css}">
 </head>
 <body>
+
+    <header>
+        <a th:href="@{/}">
+            <img src="/images/logo.jpeg" alt="Logo">
+        </a>
+    </header>
+    
     <h1>Cargar Producto</h1>
 
     <form th:action="@{/guardar}" th:object="${producto}" method="post">
@@ -28,7 +35,6 @@
 
         <button type="submit">Guardar</button>
     </form>
-
-    <a th:href="@{/ver-productos}">Volver a la lista de productos</a>
+    <button><a th:href="@{/ver-productos}">Volver a la lista de productos</a></button>
 </body>
 </html>
